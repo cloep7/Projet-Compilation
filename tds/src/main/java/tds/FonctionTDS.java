@@ -1,28 +1,28 @@
 package tds;
 
 public class FonctionTDS extends Symbole {
-	private int nbparam;
-	private int nbloc;
+	private Integer nbparam;
+	private Integer nbloc;
 
-	public FonctionTDS(String nom, String type, String cat, int nbparam, int nbloc) {
+	public FonctionTDS(String nom, String type, String cat, Integer nbparam, Integer nbloc) {
 		super(nom, type, cat);
 		this.nbparam = nbparam;
 		this.nbloc = nbloc;
 	}
 
-	public int getNbparam() {
+	public Integer getNbparam() {
 		return nbparam;
 	}
 
-	public void setNbparam(int nbparam) {
+	public void setNbparam(Integer nbparam) {
 		this.nbparam = nbparam;
 	}
 
-	public int getNbloc() {
+	public Integer getNbloc() {
 		return nbloc;
 	}
 
-	public void setNbloc(int nbloc) {
+	public void setNbloc(Integer nbloc) {
 		this.nbloc = nbloc;
 	}
 	
