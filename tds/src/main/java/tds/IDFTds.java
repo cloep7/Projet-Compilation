@@ -1,20 +1,30 @@
 package tds;
 
 public class IDFTds extends Symbole {
-	private int rang;
+	private Integer val;
+	private Integer rang;
 	private String scope;
 	
-	public IDFTds(String nom, String type, String cat, int rang, String scope) {
+	public IDFTds(String nom, String type, String cat, Integer val, Integer rang, String scope) {
 		super(nom, type, cat);
+		this.val = val;
 		this.rang = rang;
 		this.scope = scope;
 	}
 
-	public int getRang() {
+	public Integer getRang() {
 		return rang;
 	}
 
-	public void setRang(int rang) {
+	public Integer getVal() {
+		return val;
+	}
+
+	public void setVal(Integer val) {
+		this.val = val;
+	}
+
+	public void setRang(Integer rang) {
 		this.rang = rang;
 	}
 
@@ -28,6 +38,6 @@ public class IDFTds extends Symbole {
 	
 	@Override
 	public String toString() {
-		return "{nom= "+ this.getNom() + "; type= "+ this.getType() + "; cat= " + this.getCat() +"; rang= "+ rang +"; scope= "+ scope + "}";
+		return "{nom= "+ this.getNom() + "; type= "+ this.getType() + "; cat= " + this.getCat() + "; val= " + this.getVal() +"; rang= "+ rang +"; scope= "+ scope + "}";
 	}
 }
