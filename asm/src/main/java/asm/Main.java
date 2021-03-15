@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import fr.ul.miage.arbre.Affectation;
+import fr.ul.miage.arbre.Appel;
 import fr.ul.miage.arbre.Bloc;
 import fr.ul.miage.arbre.Const;
 import fr.ul.miage.arbre.Ecrire;
@@ -245,6 +246,54 @@ public class Main {
 			case 7: 
 				System.out.println("Exemple 7\n==============================");
 				
+				Noeud prog7 = new Prog();
+				Fonction f7A = new Fonction("f");
+				Fonction main7A = new Fonction("main");
+				
+				Affectation aff71 = new Affectation();
+				Idf x7A = new Idf("x");
+				aff71.setFilsGauche(x7A);
+				aff71.setFilsDroit(new Const(1));
+				
+				Affectation aff72 = new Affectation();
+				Idf y7A = new Idf("y");
+				aff72.setFilsGauche(y7A);
+				aff72.setFilsDroit(new Const(1));
+				
+				Affectation aff73 = new Affectation();
+				Idf a7A = new Idf("a");
+				aff73.setFilsGauche(a7A);
+				
+				Plus plus71 = new Plus();
+				Idf i7A = new Idf("i");
+				plus71.setFilsGauche(i7A);
+				
+				Plus plus72 = new Plus();
+				plus72.setFilsGauche(x7A);
+				plus72.setFilsDroit(y7A);
+				
+				plus71.setFilsDroit(plus72);
+				
+				aff73.setFilsDroit(plus71);
+				
+				f7A.ajouterUnFils(aff71);
+				f7A.ajouterUnFils(aff72);
+				f7A.ajouterUnFils(aff73);
+				
+				Appel appel7 = new Appel("f");
+				appel7.ajouterUnFils(new Const(3));
+				
+				Ecrire ecrire7 = new Ecrire();
+				ecrire7.ajouterUnFils(a7A);
+				
+				main7A.ajouterUnFils(appel7);
+				main7A.ajouterUnFils(ecrire7);
+				
+				prog7.ajouterUnFils(f7A);
+				prog7.ajouterUnFils(main7A);
+				
+				TxtAfficheur.afficher(prog7);
+							
 				FonctionTDS main7 = new FonctionTDS("main","void","fonction",null,null);
 				IDFTds a7 = new IDFTds("i", "int", "global", 10, null, null);
 				FonctionTDS f7 = new FonctionTDS("f","void","fonction",1,2);
