@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import fr.ul.miage.arbre.Affectation;
+import fr.ul.miage.arbre.Bloc;
 import fr.ul.miage.arbre.Const;
 import fr.ul.miage.arbre.Ecrire;
 import fr.ul.miage.arbre.Fonction;
@@ -13,6 +14,8 @@ import fr.ul.miage.arbre.Multiplication;
 import fr.ul.miage.arbre.Noeud;
 import fr.ul.miage.arbre.Plus;
 import fr.ul.miage.arbre.Prog;
+import fr.ul.miage.arbre.Si;
+import fr.ul.miage.arbre.Superieur;
 import fr.ul.miage.arbre.TxtAfficheur;
 import tds.FonctionTDS;
 import tds.IDFTds;
@@ -141,8 +144,42 @@ public class Main {
 				
 				break;
 			case 5: 
-				System.out.println("Exemple 5");
+				System.out.println("Exemple 5\n==============================");
 				
+				Noeud prog5 = new Prog();
+				Fonction f5 = new Fonction("main");
+				prog5.ajouterUnFils(f5);
+				
+				Affectation aff5 = new Affectation();
+				Idf i5A = new Idf("i");
+				aff5.setFilsGauche(i5A);
+				aff5.setFilsDroit(new Lire());
+				
+				Si si5 = new Si(1);
+				
+				Superieur sup5 = new Superieur();
+				sup5.setFilsGauche(new Idf("i"));
+				sup5.setFilsDroit(new Const(10));
+				
+				Bloc bloc51 = new Bloc();
+				Ecrire ecrire51 = new Ecrire();
+				ecrire51.ajouterUnFils(new Const(1));
+				bloc51.ajouterUnFils(ecrire51);
+				
+				Bloc bloc52 = new Bloc();
+				Ecrire ecrire52 = new Ecrire();
+				ecrire52.ajouterUnFils(new Const(2));
+				bloc52.ajouterUnFils(ecrire52);
+				
+				si5.setCondition(sup5);
+				si5.setBlocAlors(bloc51);
+				si5.setBlocSinon(bloc52);
+				
+				f5.ajouterUnFils(aff5);
+				f5.ajouterUnFils(si5);
+				
+				TxtAfficheur.afficher(prog5);
+
 				FonctionTDS main5 = new FonctionTDS("main","void","fonction",null,null);
 				IDFTds i5 = new IDFTds("i", "int", "global", null, null, null);
 				
