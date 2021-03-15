@@ -5,8 +5,10 @@ import java.util.Scanner;
 
 import fr.ul.miage.arbre.Affectation;
 import fr.ul.miage.arbre.Const;
+import fr.ul.miage.arbre.Ecrire;
 import fr.ul.miage.arbre.Fonction;
 import fr.ul.miage.arbre.Idf;
+import fr.ul.miage.arbre.Lire;
 import fr.ul.miage.arbre.Multiplication;
 import fr.ul.miage.arbre.Noeud;
 import fr.ul.miage.arbre.Plus;
@@ -105,7 +107,29 @@ public class Main {
 				tds.displayTDS();
 				break;
 			case 4:
-				System.out.println("Exemple 4");
+				System.out.println("Exemple 4\n==============================");
+				
+				Noeud prog4 = new Prog();
+				Fonction f4 = new Fonction("main");
+				prog4.ajouterUnFils(f4);
+				
+				Affectation aff4 = new Affectation();
+				Idf i4A = new Idf("i");
+				aff4.setFilsGauche(i4A);
+				aff4.setFilsDroit(new Lire());
+				
+				Ecrire ecrire4 = new Ecrire();
+				
+				Plus plus4 = new Plus();
+				plus4.setFilsGauche(i4A);
+				plus4.setFilsDroit(new Idf("j"));
+				
+				ecrire4.ajouterUnFils(plus4);
+				
+				f4.ajouterUnFils(aff4);
+				f4.ajouterUnFils(ecrire4);
+				TxtAfficheur.afficher(prog4);
+				
 				break;
 			case 5: 
 				System.out.println("Exemple 5");
