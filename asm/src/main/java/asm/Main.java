@@ -310,7 +310,22 @@ public class Main {
 				tds.displayTDS();
 				break;
 			case 8:
-				System.out.println("Exemple 8");
+				System.out.println("Exemple 8\n==============================");
+				
+				FonctionTDS main8 = new FonctionTDS("main","void","fonction",null,null);
+				IDFTds a8 = new IDFTds("a", "int", "global", null, null, null);
+				FonctionTDS f8 = new FonctionTDS("f","void","fonction",2,1);
+				IDFTds x8 = new IDFTds("j", "int", "local", null, 0, "f");
+				IDFTds i8 = new IDFTds("j", "int", "param", null, 0, "f");
+				IDFTds j8 = new IDFTds("j", "int", "param", null, 1, "f");
+				
+				listSym.add(main8);
+				listSym.add(a8);
+				listSym.add(f8);
+				listSym.add(x8);
+				listSym.add(i8);
+				listSym.add(j8);
+				tds.displayTDS();
 				break;
 		}
 	}
