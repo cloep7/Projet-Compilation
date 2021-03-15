@@ -190,6 +190,15 @@ public class Main {
 				break;
 			case 6:
 				System.out.println("Exemple 6");
+				
+				FonctionTDS main6 = new FonctionTDS("main","void","fonction",null,null);
+				IDFTds i6 = new IDFTds("i", "int", "global", null, null, null);
+				IDFTds n6 = new IDFTds("j", "int", "global", 5, null, null);
+				
+				listSym.add(main6);
+				listSym.add(i6);
+				listSym.add(n6);
+				tds.displayTDS();
 				break;
 			case 7: 
 				System.out.println("Exemple 7");
