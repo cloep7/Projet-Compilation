@@ -46,7 +46,7 @@ public class Main {
 				prog2.ajouterUnFils(new Fonction("main"));
 				TxtAfficheur.afficher(prog2);
 				
-				FonctionTDS main2 = new FonctionTDS("main","void","fonction",0,0);
+				FonctionTDS main2 = new FonctionTDS("main","void","fonction",null,null);
 				IDFTds i2 = new IDFTds("i", "int", "global", 10, null, null);
 				IDFTds j2 = new IDFTds("j", "int", "global", 20, null, null);
 				IDFTds k2 = new IDFTds("k", "int", "global", null, null, null);
@@ -93,7 +93,7 @@ public class Main {
 				
 				TxtAfficheur.afficher(prog3);				
 				
-				FonctionTDS main3 = new FonctionTDS("main","void","fonction",0,0);
+				FonctionTDS main3 = new FonctionTDS("main","void","fonction",null,null);
 				IDFTds i3 = new IDFTds("i", "int", "global", 10, null, null);
 				IDFTds j3 = new IDFTds("j", "int", "global", 20, null, null);
 				IDFTds k3 = new IDFTds("k", "int", "global", null, null, null);
@@ -130,9 +130,26 @@ public class Main {
 				f4.ajouterUnFils(ecrire4);
 				TxtAfficheur.afficher(prog4);
 				
+				FonctionTDS main4 = new FonctionTDS("main","void","fonction",null,null);
+				IDFTds i4 = new IDFTds("i", "int", "global", null, null, null);
+				IDFTds j4 = new IDFTds("j", "int", "global", 20, null, null);
+				
+				listSym.add(main4);
+				listSym.add(i4);
+				listSym.add(j4);
+				tds.displayTDS();
+				
 				break;
 			case 5: 
 				System.out.println("Exemple 5");
+				
+				FonctionTDS main5 = new FonctionTDS("main","void","fonction",null,null);
+				IDFTds i5 = new IDFTds("i", "int", "global", null, null, null);
+				
+				listSym.add(main5);
+				listSym.add(i5);
+				tds.displayTDS();
+				
 				break;
 			case 6:
 				System.out.println("Exemple 6");
