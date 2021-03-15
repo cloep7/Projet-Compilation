@@ -16,6 +16,7 @@ import fr.ul.miage.arbre.Multiplication;
 import fr.ul.miage.arbre.Noeud;
 import fr.ul.miage.arbre.Plus;
 import fr.ul.miage.arbre.Prog;
+import fr.ul.miage.arbre.Retour;
 import fr.ul.miage.arbre.Si;
 import fr.ul.miage.arbre.Superieur;
 import fr.ul.miage.arbre.TantQue;
@@ -312,9 +313,57 @@ public class Main {
 			case 8:
 				System.out.println("Exemple 8\n==============================");
 				
+				Noeud prog8 = new Prog();
+				Fonction f8A = new Fonction("f");
+				Fonction main8A = new Fonction("main");
+				
+				Affectation aff81 = new Affectation();
+				Idf x8A = new Idf("x");
+				aff81.setFilsGauche(x8A);
+				
+				Plus plus81 = new Plus();
+				Idf i8A = new Idf("i");
+				plus81.setFilsGauche(i8A);
+				Idf j8A = new Idf("j");
+				plus81.setFilsDroit(j8A);
+				
+				aff81.setFilsDroit(plus81);
+				
+				Retour retour8 = new Retour("f");
+				
+				Plus plus82 = new Plus();
+				plus82.setFilsGauche(x8A);
+				plus82.setFilsDroit(new Const(10));
+				
+				retour8.setLeFils(plus82);
+				
+				f8A.ajouterUnFils(aff81);
+				f8A.ajouterUnFils(retour8);
+				
+				Affectation aff82 = new Affectation();
+				Idf a8A = new Idf("a");
+				aff82.setFilsGauche(a8A);
+				
+				Appel appel8 = new Appel("f");
+				appel8.ajouterUnFils(new Const(1));
+				appel8.ajouterUnFils(new Const(2));
+				
+				aff82.setFilsDroit(appel8);
+				
+				Ecrire ecrire8 = new Ecrire();
+				ecrire8.ajouterUnFils(a8A);
+				
+				main8A.ajouterUnFils(aff82);
+				main8A.ajouterUnFils(ecrire8);
+				
+				prog8.ajouterUnFils(f8A);
+				prog8.ajouterUnFils(main8A);
+				
+				TxtAfficheur.afficher(prog8);
+				
 				FonctionTDS main8 = new FonctionTDS("main","void","fonction",null,null);
 				IDFTds a8 = new IDFTds("a", "int", "global", null, null, null);
-				FonctionTDS f8 = new FonctionTDS("f","void","fonction",2,1);
+				FonctionTDS f8 = new FonctionTDS("f","int","fonction",2,1);
 				IDFTds x8 = new IDFTds("j", "int", "local", null, 0, "f");
 				IDFTds i8 = new IDFTds("j", "int", "param", null, 0, "f");
 				IDFTds j8 = new IDFTds("j", "int", "param", null, 1, "f");
