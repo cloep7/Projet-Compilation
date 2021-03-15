@@ -9,6 +9,7 @@ import fr.ul.miage.arbre.Const;
 import fr.ul.miage.arbre.Ecrire;
 import fr.ul.miage.arbre.Fonction;
 import fr.ul.miage.arbre.Idf;
+import fr.ul.miage.arbre.Inferieur;
 import fr.ul.miage.arbre.Lire;
 import fr.ul.miage.arbre.Multiplication;
 import fr.ul.miage.arbre.Noeud;
@@ -16,6 +17,7 @@ import fr.ul.miage.arbre.Plus;
 import fr.ul.miage.arbre.Prog;
 import fr.ul.miage.arbre.Si;
 import fr.ul.miage.arbre.Superieur;
+import fr.ul.miage.arbre.TantQue;
 import fr.ul.miage.arbre.TxtAfficheur;
 import tds.FonctionTDS;
 import tds.IDFTds;
@@ -189,7 +191,47 @@ public class Main {
 				
 				break;
 			case 6:
-				System.out.println("Exemple 6");
+				System.out.println("Exemple 6\n==============================");
+				
+				Noeud prog6 = new Prog();
+				Fonction f6 = new Fonction("main");
+				prog6.ajouterUnFils(f6);
+				
+				Affectation aff6 = new Affectation();
+				Idf i6A = new Idf("i");
+				aff6.setFilsGauche(i6A);
+				aff6.setFilsDroit(new Const(0));
+				
+				TantQue tq6 = new TantQue(1);
+				
+				Inferieur inf6 = new Inferieur();
+				inf6.setFilsGauche(i6A);
+				inf6.setFilsDroit(new Idf("n"));
+				
+				Bloc bloc6 = new Bloc();
+				
+				Ecrire ecrire6 = new Ecrire();
+				ecrire6.ajouterUnFils(i6A);
+				
+				Affectation aff62 = new Affectation();
+				
+				Plus plus6 = new Plus();
+				plus6.setFilsGauche(i6A);
+				plus6.setFilsDroit(new Const(1));
+				
+				aff62.setFilsGauche(i6A);
+				aff62.setFilsDroit(plus6);
+				
+				bloc6.ajouterUnFils(ecrire6);
+				bloc6.ajouterUnFils(aff62);
+				
+				tq6.setCondition(inf6);
+				tq6.setBloc(bloc6);
+				
+				f6.ajouterUnFils(aff6);
+				f6.ajouterUnFils(tq6);
+				
+				TxtAfficheur.afficher(prog6);
 				
 				FonctionTDS main6 = new FonctionTDS("main","void","fonction",null,null);
 				IDFTds i6 = new IDFTds("i", "int", "global", null, null, null);
