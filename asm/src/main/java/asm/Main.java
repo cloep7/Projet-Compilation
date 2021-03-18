@@ -118,6 +118,8 @@ public class Main {
 				
 				System.out.println(gen.generer_data(tds));
 				
+				System.out.println(gen.generer_finProg());
+				
 				break;
 			case 4:
 				System.out.println("Exemple 4\n==============================");
