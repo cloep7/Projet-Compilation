@@ -9,7 +9,13 @@ import tds.Tds;
 public class Generateur {
 
 	/*String generer_programme(Noeud a, Tds tds) {
+		String res = "";
+		res= generer_debut();
+		res+=generer_data(tds);
 		
+		for(Noeud n : a.getFils()) {
+			//res+= generer_fonction(n);
+		}
 	}*/
 	
 	String generer_data(Tds tds) {
@@ -37,6 +43,14 @@ public class Generateur {
 					"\n" +
 					"\tCMOVE(pile,SP)\r\n" + 
 					"\tBR(debut)\n";
+		return res;
+	}
+	
+	String generer_finProg() {
+		String res = "debut:\r\n" + 
+				"\tCALL(main)\r\n" + 
+				"\tHALT()\r\n" +
+				"pile:\n";
 		return res;
 	}
 }
