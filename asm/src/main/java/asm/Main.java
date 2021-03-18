@@ -80,6 +80,9 @@ public class Main {
 				aff31.setFilsGauche(k3A);
 				aff31.setFilsDroit(c31);
 				
+				
+				System.out.println("Test : " + gen.generer_affectation(aff31));
+				
 				Affectation aff32 = new Affectation();
 				Idf l3A = new Idf("l");
 				aff32.setFilsGauche(l3A);
