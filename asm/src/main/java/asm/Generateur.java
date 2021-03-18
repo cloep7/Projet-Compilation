@@ -36,6 +36,16 @@ public class Generateur {
 		return res;
 	}
 	
+	String generer_affectation(Noeud a) {
+		String res="";
+		//res=generer_expression(a.getFils().get(1));
+		String fg=a.getFils().get(0).getLabel();
+        String label=fg.substring(fg.indexOf("/")+1);
+        res+="\tPOP(R0)\r\n"+
+        		"\tST(R0,"+label+")\n";
+        return res;
+	}
+	
 	String generer_debut() {
 		String res = ".include beta.uasm\r\n" + 
 					".include intio.uasm\r\n" + 
