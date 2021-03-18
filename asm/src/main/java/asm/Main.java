@@ -123,6 +123,10 @@ public class Main {
 				
 				System.out.println(gen.generer_finProg());
 				
+				System.out.println(k3A.getLabel());
+				
+				System.out.println(k3A.getLabel().substring(k3A.getLabel().indexOf("/")+1));
+				
 				break;
 			case 4:
 				System.out.println("Exemple 4\n==============================");
