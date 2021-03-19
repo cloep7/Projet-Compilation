@@ -55,6 +55,65 @@ public class Generateur {
 		return res;
 	}
 	
+	String generer_bloc(Noeud a) {
+		String res="";
+		for(Noeud n : a.getFils()) {
+			res+=generer_instruction(n);
+		}
+		return res;
+	}
+	
+	String generer_condition(Noeud a) {
+		String res="";
+		switch (a.getCat()) {
+			case CONST:
+				res+="\tCMOVE("+a.getLabel().substring(a.getLabel().indexOf("/")+1)+",R0)"+
+						"\tPUSH(R0)\r\n";
+				break;
+			case INF:
+				res+=generer_expression(a.getFils().get(0));
+				res+=generer_expression(a.getFils().get(1));
+				res+="\tPOP(R2)\r\n"+
+						"\tPOP(R1)\r\n"+
+						"\tCMPLT(R1,R2,R0)\r\n"+
+						"\tPUSH(R0)\r\n";
+				break;
+			case INFE:
+				res+=generer_expression(a.getFils().get(0));
+				res+=generer_expression(a.getFils().get(1));
+				res+="\tPOP(R2)\r\n"+
+						"\tPOP(R1)\r\n"+
+						"\tCMPLE(R1,R2,R0)\r\n"+
+						"\tPUSH(R0)\r\n";
+				break;
+			case SUP:
+				res+=generer_expression(a.getFils().get(0));
+				res+=generer_expression(a.getFils().get(1));
+				res+="\tPOP(R2)\r\n"+
+						"\tPOP(R1)\r\n"+
+						"\tCMPLT(R2,R1,R0)\r\n"+
+						"\tPUSH(R0)\r\n";
+				break;
+			case SUPE:
+				res+=generer_expression(a.getFils().get(0));
+				res+=generer_expression(a.getFils().get(1));
+				res+="\tPOP(R2)\r\n"+
+						"\tPOP(R1)\r\n"+
+						"\tCMPLE(R2,R1,R0)\r\n"+
+						"\tPUSH(R0)\r\n";
+				break;
+			case EG:
+				res+=generer_expression(a.getFils().get(0));
+				res+=generer_expression(a.getFils().get(1));
+				res+="\tPOP(R2)\r\n"+
+						"\tPOP(R1)\r\n"+
+						"\tCMPEQ(R1,R2,R0)\r\n"+
+						"\tPUSH(R0)\r\n";
+				break;
+		}
+		return res;
+	}
+	
 	String generer_si(Noeud a) {
 		String res="";
 		res+=generer_condition(a.getFils().get(0));
@@ -62,9 +121,9 @@ public class Generateur {
 				"\tBF(R0,sinon)";
 		res+=generer_bloc(a.getFils().get(1));
 		res+="\tBR(fsi)\\n"+
-				"sinon:\r\n";
+				"sinon"+a.getLabel().substring(a.getLabel().indexOf("/")+1)+":\r\n";
 		res+=generer_bloc(a.getFils().get(2));
-		res+="fsi:\r\n";
+		res+="fsi"+a.getLabel().substring(a.getLabel().indexOf("/")+1)+":\r\n";
 		
 	}
 	
