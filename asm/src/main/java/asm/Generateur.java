@@ -55,13 +55,13 @@ public class Generateur {
 		return res;
 	}
 	
-	String generer_bloc(Noeud a) {
+	/*String generer_bloc(Noeud a) {
 		String res="";
 		for(Noeud n : a.getFils()) {
 			res+=generer_instruction(n);
 		}
 		return res;
-	}
+	}*/
 	
 	String generer_condition(Noeud a) {
 		String res="";
@@ -110,11 +110,19 @@ public class Generateur {
 						"\tCMPEQ(R1,R2,R0)\r\n"+
 						"\tPUSH(R0)\r\n";
 				break;
+			case DIF:
+				res+=generer_expression(a.getFils().get(0));
+				res+=generer_expression(a.getFils().get(1));
+				res+="\tPOP(R2)\r\n"+
+						"\tPOP(R1)\r\n"+
+						"\tCMPEQ(R1,R2,R0)\r\n"+
+						"\tPUSH(R0)\r\n";
+				break;
 		}
 		return res;
 	}
 	
-	String generer_si(Noeud a) {
+	/*String generer_si(Noeud a) {
 		String res="";
 		res+=generer_condition(a.getFils().get(0));
 		res+="\tPOP(R0)\r\n"+
@@ -124,8 +132,9 @@ public class Generateur {
 				"sinon"+a.getLabel().substring(a.getLabel().indexOf("/")+1)+":\r\n";
 		res+=generer_bloc(a.getFils().get(2));
 		res+="fsi"+a.getLabel().substring(a.getLabel().indexOf("/")+1)+":\r\n";
+		return res;
 		
-	}
+	}*/
 	
 	String generer_expression(Noeud a) {
 		String res="";
@@ -174,6 +183,8 @@ public class Generateur {
 				res+="\tRDINT()\r\n"+
 						"\tPUSH(R0)";
 				break;
+			/*case APPEL:
+				res+=generer_appel();*/
 			default:
 					
 			
@@ -181,7 +192,7 @@ public class Generateur {
 		return res;
 	}
 	
-	String generer_instruction(Noeud a) {
+	/*String generer_instruction(Noeud a) {
 		String res="";
 		switch (a.getCat()) {
 			case AFF:
@@ -206,7 +217,7 @@ public class Generateur {
 				
 		}
 		return res;
-	}
+	}*/
 	
 	String generer_debut() {
 		String res = ".include beta.uasm\r\n" + 
