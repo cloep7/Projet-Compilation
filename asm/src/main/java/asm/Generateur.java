@@ -55,7 +55,6 @@ public class Generateur {
 		return res;
 	}
 	
-	// Pas sûr
 	String generer_expression(Noeud a) {
 		String res="";
 		for (Noeud n : a.getFils()) {
