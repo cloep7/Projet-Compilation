@@ -127,6 +127,8 @@ public class Main {
 				
 				System.out.println(k3A.getLabel().substring(k3A.getLabel().indexOf("/")+1));
 				
+				System.out.println(gen.generer_expression(plus3));
+				
 				break;
 			case 4:
 				System.out.println("Exemple 4\n==============================");
@@ -193,6 +195,8 @@ public class Main {
 				si5.setCondition(sup5);
 				si5.setBlocAlors(bloc51);
 				si5.setBlocSinon(bloc52);
+				
+				System.out.println(si5.getLabel());
 				
 				f5.ajouterUnFils(aff5);
 				f5.ajouterUnFils(si5);
