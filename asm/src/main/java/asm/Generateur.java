@@ -79,9 +79,35 @@ public class Generateur {
 				case MOINS:
 					res+=generer_expression(n.getFils().get(0));
 					res+=generer_expression(n.getFils().get(1));
+					res+="\tPOP(R2)\r\n"+
+							"\tPOP(R1)\r\n"+
+							"\tSUB(R1,R2,R0)\r\n"+
+							"\tPUSH(R0)\r\n";
+					break;
+				case MUL:
+					res+=generer_expression(n.getFils().get(0));
+					res+=generer_expression(n.getFils().get(1));
+					res+="\tPOP(R2)\r\n"+
+							"\tPOP(R1)\r\n"+
+							"\tMUL(R1,R2,R0)\r\n"+
+							"\tPUSH(R0)\r\n";
+					break;
+				case DIV:
+					res+=generer_expression(n.getFils().get(0));
+					res+=generer_expression(n.getFils().get(1));
+					res+="\tPOP(R2)\r\n"+
+							"\tPOP(R1)\r\n"+
+							"\tDIV(R1,R2,R0)\r\n"+
+							"\tPUSH(R0)\r\n";
+					break;
+				case LIRE:
+					res+="\tRDINT()\r\n"+
+							"\tPUSH(R0)";
+				default:
 					
 			}
 		}
+		return res;
 	}
 	
 	String generer_debut() {
