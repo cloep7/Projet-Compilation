@@ -80,9 +80,6 @@ public class Main {
 				aff31.setFilsGauche(k3A);
 				aff31.setFilsDroit(c31);
 				
-				
-				System.out.println("Test : " + gen.generer_affectation(aff31));
-				
 				Affectation aff32 = new Affectation();
 				Idf l3A = new Idf("l");
 				aff32.setFilsGauche(l3A);
@@ -127,7 +124,8 @@ public class Main {
 				
 				System.out.println(k3A.getLabel().substring(k3A.getLabel().indexOf("/")+1));
 				
-				System.out.println(gen.generer_expression(plus3));
+				System.out.println(gen.generer_expression(plus3,tds));
+				
 				
 				break;
 			case 4:
@@ -262,6 +260,7 @@ public class Main {
 				listSym.add(i6);
 				listSym.add(n6);
 				tds.displayTDS();
+				
 				break;
 			case 7: 
 				System.out.println("Exemple 7\n==============================");
@@ -328,6 +327,8 @@ public class Main {
 				listSym.add(x7);
 				listSym.add(y7);
 				tds.displayTDS();
+				
+				System.out.println(f7A.getLabel());
 				break;
 			case 8:
 				System.out.println("Exemple 8\n==============================");
