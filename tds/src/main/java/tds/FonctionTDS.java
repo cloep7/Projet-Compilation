@@ -24,7 +24,7 @@ public class FonctionTDS extends Symbole {
 
 	public void setNbloc(Integer nbloc) {
 		this.nbloc = nbloc;
-	}
+	} 
 	
 	@Override
 	public String toString() {
