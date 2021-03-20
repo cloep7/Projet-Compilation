@@ -23,5 +23,16 @@ public class Tds {
 		}
 	}
 	
+	public FonctionTDS getFuncByName(String nom) {
+		for (int i=0 ; i<this.tds.size() ; i++) {
+			if (this.tds.get(i) instanceof FonctionTDS) {
+				if (this.tds.get(i).getNom().equals(nom)) {
+					return (FonctionTDS) this.tds.get(i);
+				}
+			}
+		}
+		return null;
+	}
+	
 	
 }
