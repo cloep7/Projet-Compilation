@@ -32,33 +32,46 @@ import tds.Tds;
 public class Main {
 	public static void main (String [] args) {
 		Scanner sc = new Scanner(System.in);
-		int choix = sc.nextInt();
+		int choix;
+		boolean again=true;
 		ArrayList<Symbole> listSym = new ArrayList<Symbole>();
 		Tds tds = new Tds(listSym);
 		Generateur gen = new Generateur();
-		
+		while (again) {
+			System.out.println("Veuillez rentrer le numéro d'exemple dont vous voulez obtenir l'arbre, la TDS ainsi que le code ASM :  ");
+			choix = sc.nextInt();
 		switch (choix) {
 			case 1: 
 				System.out.println("Exemple 1\n==============================");
 				
 				Noeud prog1 = new Prog();
 				prog1.ajouterUnFils(new Fonction("main"));
+				
+				System.out.println("==========Arbre généré==========");
 				TxtAfficheur.afficher(prog1);
 				
 				FonctionTDS main1 = new FonctionTDS("main","void","fonction",0,0);
 				listSym.add(main1);
+				System.out.println("==========TDS générée==========");
 				tds.displayTDS();
 				
+				System.out.println("==========Code ASM généré==========");
 				System.out.println(gen.generer_programme(prog1, tds));
 				
 				generer_fichierASM("1", prog1, tds);
-				
+				System.out.println("Code ASM copié dans exemple1.asm ! Vous le retrouverez à la racine de ce projet\n");
+				System.out.print("Voulez-vous générer un autre exemple ? (1:oui/0:non) ");
+				choix = sc.nextInt();
+				if (choix==0) {
+					again=false;
+				}
 				break;
 			case 2:
 				System.out.println("Exemple 2\n==============================");
 				
 				Noeud prog2 = new Prog();
 				prog2.ajouterUnFils(new Fonction("main"));
+				System.out.println("==========Arbre généré==========");
 				TxtAfficheur.afficher(prog2);
 				
 				FonctionTDS main2 = new FonctionTDS("main","void","fonction",0,0);
@@ -72,11 +85,19 @@ public class Main {
 				listSym.add(j2);
 				listSym.add(k2);
 				listSym.add(l2);
+				System.out.println("==========TDS générée==========");
 				tds.displayTDS();
 				
+				System.out.println("==========Code ASM généré==========");
 				System.out.println(gen.generer_programme(prog2, tds));
 				
 				generer_fichierASM("2", prog2, tds);
+				System.out.println("Code ASM copié dans exemple2.asm ! Vous le retrouverez à la racine de ce projet");
+				System.out.print("Voulez-vous générer un autre exemple ? (1:oui/0:non) ");
+				choix = sc.nextInt();
+				if (choix==0) {
+					again=false;
+				}
 				break;
 			case 3: 
 				System.out.println("Exemple 3\n==============================");
@@ -110,6 +131,7 @@ public class Main {
 				f3.ajouterUnFils(aff31);
 				f3.ajouterUnFils(aff32);
 				
+				System.out.println("==========Arbre généré==========");
 				TxtAfficheur.afficher(prog3);				
 				
 				FonctionTDS main3 = new FonctionTDS("main","void","fonction",0,0);
@@ -123,10 +145,18 @@ public class Main {
 				listSym.add(j3);
 				listSym.add(k3);
 				listSym.add(l3);
+				System.out.println("==========TDS générée==========");
 				tds.displayTDS();
 				
+				System.out.println("==========Code ASM généré==========");
 				System.out.println(gen.generer_programme(prog3, tds));
 				generer_fichierASM("3", prog3, tds);
+				System.out.println("Code ASM copié dans exemple3.asm ! Vous le retrouverez à la racine de ce projet");
+				System.out.print("Voulez-vous générer un autre exemple ? (1:oui/0:non) ");
+				choix = sc.nextInt();
+				if (choix==0) {
+					again=false;
+				}
 				break;
 			case 4:
 				System.out.println("Exemple 4\n==============================");
@@ -150,6 +180,7 @@ public class Main {
 				
 				f4.ajouterUnFils(aff4);
 				f4.ajouterUnFils(ecrire4);
+				System.out.println("==========Arbre généré==========");
 				TxtAfficheur.afficher(prog4);
 				
 				FonctionTDS main4 = new FonctionTDS("main","void","fonction",0,0);
@@ -159,12 +190,18 @@ public class Main {
 				listSym.add(main4);
 				listSym.add(i4);
 				listSym.add(j4);
+				System.out.println("==========TDS générée==========");
 				tds.displayTDS();
-				System.out.println("");
 				
+				System.out.println("==========Code ASM généré==========");
 				System.out.println(gen.generer_programme(prog4, tds));
 				generer_fichierASM("4", prog4, tds);
-				
+				System.out.println("Code ASM copié dans exemple4.asm ! Vous le retrouverez à la racine de ce projet");
+				System.out.print("Voulez-vous générer un autre exemple ? (1:oui/0:non) ");
+				choix = sc.nextInt();
+				if (choix==0) {
+					again=false;
+				}
 				break;
 			case 5: 
 				System.out.println("Exemple 5\n==============================");
@@ -198,11 +235,10 @@ public class Main {
 				si5.setBlocAlors(bloc51);
 				si5.setBlocSinon(bloc52);
 				
-				System.out.println(si5.getLabel());
-				
 				f5.ajouterUnFils(aff5);
 				f5.ajouterUnFils(si5);
 				
+				System.out.println("=========Arbre généré==========");
 				TxtAfficheur.afficher(prog5);
 
 				FonctionTDS main5 = new FonctionTDS("main","void","fonction",0,0);
@@ -210,11 +246,18 @@ public class Main {
 				
 				listSym.add(main5);
 				listSym.add(i5);
+				System.out.println("==========TDS générée==========");
 				tds.displayTDS();
 				
+				System.out.println("==========Code ASM généré==========");
 				System.out.println(gen.generer_programme(prog5, tds));
 				generer_fichierASM("5", prog5, tds);
-				
+				System.out.println("Code ASM copié dans exemple5.asm ! Vous le retrouverez à la racine de ce projet");
+				System.out.print("Voulez-vous générer un autre exemple ? (1:oui/0:non) ");
+				choix = sc.nextInt();
+				if (choix==0) {
+					again=false;
+				}
 				break;
 			case 6:
 				System.out.println("Exemple 6\n==============================");
@@ -257,6 +300,7 @@ public class Main {
 				f6.ajouterUnFils(aff6);
 				f6.ajouterUnFils(tq6);
 				
+				System.out.println("==========Arbre généré==========");
 				TxtAfficheur.afficher(prog6);
 				
 				FonctionTDS main6 = new FonctionTDS("main","void","fonction",0,0);
@@ -266,11 +310,18 @@ public class Main {
 				listSym.add(main6);
 				listSym.add(i6);
 				listSym.add(n6);
+				System.out.println("==========TDS générée==========");
 				tds.displayTDS();
 				
+				System.out.println("==========Code ASM généré==========");
 				System.out.println(gen.generer_programme(prog6, tds));
 				generer_fichierASM("6", prog6, tds);
-				
+				System.out.println("Code ASM copié dans exemple6.asm ! Vous le retrouverez à la racine de ce projet");
+				System.out.print("Voulez-vous générer un autre exemple ? (1:oui/0:non) ");
+				choix = sc.nextInt();
+				if (choix==0) {
+					again=false;
+				}
 				break;
 			case 7: 
 				System.out.println("Exemple 7\n==============================");
@@ -321,6 +372,7 @@ public class Main {
 				prog7.ajouterUnFils(f7A);
 				prog7.ajouterUnFils(main7A);
 				
+				System.out.println("==========Arbre généré==========");
 				TxtAfficheur.afficher(prog7);
 							
 				FonctionTDS main7 = new FonctionTDS("main","void","fonction",0,0);
@@ -336,10 +388,18 @@ public class Main {
 				listSym.add(i7);
 				listSym.add(x7);
 				listSym.add(y7);
+				System.out.println("==========TDS générée==========");
 				tds.displayTDS();
 				
+				System.out.println("==========Code ASM généré==========");
 				System.out.println(gen.generer_programme(prog7, tds));
 				generer_fichierASM("7", prog7, tds);
+				System.out.println("Code ASM copié dans exemple7.asm ! Vous le retrouverez à la racine de ce projet");
+				System.out.print("Voulez-vous générer un autre exemple ? (1:oui/0:non) ");
+				choix = sc.nextInt();
+				if (choix==0) {
+					again=false;
+				}
 				break;
 			case 8:
 				System.out.println("Exemple 8\n==============================");
@@ -390,6 +450,7 @@ public class Main {
 				prog8.ajouterUnFils(f8A);
 				prog8.ajouterUnFils(main8A);
 				
+				System.out.println("==========Arbre généré==========");
 				TxtAfficheur.afficher(prog8);
 				
 				FonctionTDS main8 = new FonctionTDS("main","void","fonction",0,0);
@@ -405,11 +466,22 @@ public class Main {
 				listSym.add(x8);
 				listSym.add(i8);
 				listSym.add(j8);
+				System.out.println("==========TDS générée==========");
 				tds.displayTDS();
 				
+				System.out.println("==========Code ASM généré==========");
 				System.out.println(gen.generer_programme(prog8, tds));
 				generer_fichierASM("8", prog8, tds);
+				System.out.println("Code ASM copié dans exemple8.asm ! Vous le retrouverez à la racine de ce projet");
+				System.out.print("Voulez-vous générer un autre exemple ? (1:oui/0:non) ");
+				choix = sc.nextInt();
+				if (choix==0) {
+					again=false;
+				}
 				break;
+			default:
+				System.out.println("Vous ne pouvez rentrez qu'un chiffre en 1 et 8 !");
+		}
 		}
 	}
 	
