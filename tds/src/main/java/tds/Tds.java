@@ -34,5 +34,16 @@ public class Tds {
 		return null;
 	}
 	
+	public IDFTds getIdfByName(String nom ) {
+		for (int i=0 ; i<this.tds.size() ; i++) {
+			if (this.tds.get(i) instanceof IDFTds) {
+				if (this.tds.get(i).getNom().equals(nom)) {
+					return (IDFTds) this.tds.get(i);
+				}
+			}
+		}
+		return null;
+	}
+	
 	
 }
