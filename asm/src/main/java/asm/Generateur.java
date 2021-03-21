@@ -130,7 +130,7 @@ public class Generateur {
 				res+=generer_expression(a.getFils().get(1),tds);
 				res+="\tPOP(R2)\r\n"+
 						"\tPOP(R1)\r\n"+
-						"\tCMPEQ(R1,R2,R0)\r\n"+
+						"\tCMPNEQ(R1,R2,R0)\r\n"+
 						"\tPUSH(R0)\r\n";
 				break;
 		}
