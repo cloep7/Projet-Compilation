@@ -42,9 +42,11 @@ public class Main {
 				prog1.ajouterUnFils(new Fonction("main"));
 				TxtAfficheur.afficher(prog1);
 				
-				FonctionTDS main1 = new FonctionTDS("main","void","fonction",null,null);
+				FonctionTDS main1 = new FonctionTDS("main","void","fonction",0,0);
 				listSym.add(main1);
 				tds.displayTDS();
+				
+				System.out.println(gen.generer_programme(prog1, tds));
 				
 				break;
 			case 2:
@@ -54,11 +56,11 @@ public class Main {
 				prog2.ajouterUnFils(new Fonction("main"));
 				TxtAfficheur.afficher(prog2);
 				
-				FonctionTDS main2 = new FonctionTDS("main","void","fonction",null,null);
-				IDFTds i2 = new IDFTds("i", "int", "global", 10, null, null);
-				IDFTds j2 = new IDFTds("j", "int", "global", 20, null, null);
-				IDFTds k2 = new IDFTds("k", "int", "global", 0, null, null);
-				IDFTds l2 = new IDFTds("l", "int", "global", 0, null, null);
+				FonctionTDS main2 = new FonctionTDS("main","void","fonction",0,0);
+				IDFTds i2 = new IDFTds("i", "int", "global", 10, 0, null);
+				IDFTds j2 = new IDFTds("j", "int", "global", 20, 0, null);
+				IDFTds k2 = new IDFTds("k", "int", "global", 0, 0, null);
+				IDFTds l2 = new IDFTds("l", "int", "global", 0, 0, null);
 				
 				listSym.add(main2);
 				listSym.add(i2);
@@ -66,6 +68,8 @@ public class Main {
 				listSym.add(k2);
 				listSym.add(l2);
 				tds.displayTDS();
+				
+				System.out.println(gen.generer_programme(prog2, tds));
 				break;
 			case 3: 
 				System.out.println("Exemple 3\n==============================");
@@ -101,11 +105,11 @@ public class Main {
 				
 				TxtAfficheur.afficher(prog3);				
 				
-				FonctionTDS main3 = new FonctionTDS("main","void","fonction",null,null);
-				IDFTds i3 = new IDFTds("i", "int", "global", 10, null, null);
-				IDFTds j3 = new IDFTds("j", "int", "global", 20, null, null);
-				IDFTds k3 = new IDFTds("k", "int", "global", 0, null, null);
-				IDFTds l3 = new IDFTds("l", "int", "global", 0, null, null);
+				FonctionTDS main3 = new FonctionTDS("main","void","fonction",0,0);
+				IDFTds i3 = new IDFTds("i", "int", "global", 10, 0, null);
+				IDFTds j3 = new IDFTds("j", "int", "global", 20, 0, null);
+				IDFTds k3 = new IDFTds("k", "int", "global", 0, 0, null);
+				IDFTds l3 = new IDFTds("l", "int", "global", 0, 0, null);
 				
 				listSym.add(main3);
 				listSym.add(i3);
@@ -114,19 +118,7 @@ public class Main {
 				listSym.add(l3);
 				tds.displayTDS();
 				
-				System.out.println(gen.generer_debut());
-				
-				System.out.println(gen.generer_data(tds));
-				
-				System.out.println(gen.generer_finProg());
-				
-				System.out.println(k3A.getLabel());
-				
-				System.out.println(k3A.getLabel().substring(k3A.getLabel().indexOf("/")+1));
-				
-				System.out.println(gen.generer_expression(plus3,tds));
-				
-				
+				System.out.println(gen.generer_programme(prog3, tds));
 				break;
 			case 4:
 				System.out.println("Exemple 4\n==============================");
@@ -152,14 +144,17 @@ public class Main {
 				f4.ajouterUnFils(ecrire4);
 				TxtAfficheur.afficher(prog4);
 				
-				FonctionTDS main4 = new FonctionTDS("main","void","fonction",null,null);
-				IDFTds i4 = new IDFTds("i", "int", "global", 0, null, null);
-				IDFTds j4 = new IDFTds("j", "int", "global", 20, null, null);
+				FonctionTDS main4 = new FonctionTDS("main","void","fonction",0,0);
+				IDFTds i4 = new IDFTds("i", "int", "global", 0, 0, null);
+				IDFTds j4 = new IDFTds("j", "int", "global", 20, 0, null);
 				
 				listSym.add(main4);
 				listSym.add(i4);
 				listSym.add(j4);
 				tds.displayTDS();
+				System.out.println("");
+				
+				System.out.println(gen.generer_programme(prog4, tds));
 				
 				break;
 			case 5: 
@@ -201,12 +196,14 @@ public class Main {
 				
 				TxtAfficheur.afficher(prog5);
 
-				FonctionTDS main5 = new FonctionTDS("main","void","fonction",null,null);
-				IDFTds i5 = new IDFTds("i", "int", "global", 0, null, null);
+				FonctionTDS main5 = new FonctionTDS("main","void","fonction",0,0);
+				IDFTds i5 = new IDFTds("i", "int", "global", 0, 0, null);
 				
 				listSym.add(main5);
 				listSym.add(i5);
 				tds.displayTDS();
+				
+				System.out.println(gen.generer_programme(prog5, tds));
 				
 				break;
 			case 6:
@@ -252,14 +249,16 @@ public class Main {
 				
 				TxtAfficheur.afficher(prog6);
 				
-				FonctionTDS main6 = new FonctionTDS("main","void","fonction",null,null);
-				IDFTds i6 = new IDFTds("i", "int", "global", 0, null, null);
-				IDFTds n6 = new IDFTds("j", "int", "global", 5, null, null);
+				FonctionTDS main6 = new FonctionTDS("main","void","fonction",0,0);
+				IDFTds i6 = new IDFTds("i", "int", "global", 0, 0, null);
+				IDFTds n6 = new IDFTds("n", "int", "global", 5, 0, null);
 				
 				listSym.add(main6);
 				listSym.add(i6);
 				listSym.add(n6);
 				tds.displayTDS();
+				
+				System.out.println(gen.generer_programme(prog6, tds));
 				
 				break;
 			case 7: 
@@ -313,12 +312,12 @@ public class Main {
 				
 				TxtAfficheur.afficher(prog7);
 							
-				FonctionTDS main7 = new FonctionTDS("main","void","fonction",null,null);
-				IDFTds a7 = new IDFTds("i", "int", "global", 10, null, null);
+				FonctionTDS main7 = new FonctionTDS("main","void","fonction",0,0);
+				IDFTds a7 = new IDFTds("a", "int", "global", 10, 0, null);
 				FonctionTDS f7 = new FonctionTDS("f","void","fonction",1,2);
-				IDFTds i7 = new IDFTds("j", "int", "param", null, 0, "f");
-				IDFTds x7 = new IDFTds("j", "int", "local", null, 0, "f");
-				IDFTds y7 = new IDFTds("j", "int", "local", null, 0, "f");
+				IDFTds i7 = new IDFTds("i", "int", "param", 0, 0, "f");
+				IDFTds x7 = new IDFTds("x", "int", "local", 0, 0, "f");
+				IDFTds y7 = new IDFTds("y", "int", "local", 0, 1, "f");
 				
 				listSym.add(main7);
 				listSym.add(a7);
@@ -328,7 +327,7 @@ public class Main {
 				listSym.add(y7);
 				tds.displayTDS();
 				
-				System.out.println(f7A.getLabel());
+				System.out.println(gen.generer_programme(prog7, tds));
 				break;
 			case 8:
 				System.out.println("Exemple 8\n==============================");
@@ -381,12 +380,12 @@ public class Main {
 				
 				TxtAfficheur.afficher(prog8);
 				
-				FonctionTDS main8 = new FonctionTDS("main","void","fonction",null,null);
-				IDFTds a8 = new IDFTds("a", "int", "global", 0, null, null);
-				FonctionTDS f8 = new FonctionTDS("f","int","fonction",2,1);
-				IDFTds x8 = new IDFTds("j", "int", "local", null, 0, "f");
-				IDFTds i8 = new IDFTds("j", "int", "param", null, 0, "f");
-				IDFTds j8 = new IDFTds("j", "int", "param", null, 1, "f");
+				FonctionTDS main8 = new FonctionTDS("main","void","fonction",0,0);
+				IDFTds a8 = new IDFTds("a", "int", "global", 0, 0, null);
+				FonctionTDS f8 = new FonctionTDS("f","int","fonction",2,1); 
+				IDFTds x8 = new IDFTds("x", "int", "local", 0, 0, "f");
+				IDFTds i8 = new IDFTds("i", "int", "param", 0, 0, "f");
+				IDFTds j8 = new IDFTds("j", "int", "param", 0, 1, "f");
 				
 				listSym.add(main8);
 				listSym.add(a8);
@@ -395,6 +394,8 @@ public class Main {
 				listSym.add(i8);
 				listSym.add(j8);
 				tds.displayTDS();
+				
+				System.out.println(gen.generer_programme(prog8, tds));
 				break;
 		}
 	}
