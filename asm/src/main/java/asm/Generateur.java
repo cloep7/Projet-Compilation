@@ -43,11 +43,22 @@ public class Generateur {
 	
 	String generer_affectation(Noeud a, Tds tds) {
 		String res="";
-		res=generer_expression(a.getFils().get(1),tds);
-		String fg=a.getFils().get(0).getLabel();
-        String label=fg.substring(fg.indexOf("/")+1);
-        res+="\tPOP(R0)\r\n"+
-        		"\tST(R0,"+label+")\n";
+		res+=generer_expression(a.getFils().get(1),tds);
+		
+		String fg = a.getFils().get(0).getLabel();
+		String nomIdf = fg.substring(fg.indexOf("/")+1);
+		if (tds.getIdfByName(nomIdf).getCat().equals("global")) {
+	        res+="\tPOP(R0)\r\n"+
+	        		"\tST(R0,"+nomIdf+")\r\n";
+		} else if (tds.getIdfByName(nomIdf).getCat().equals("local")) {
+			res+="\tPOP(R0)\r\n"+
+					"\tPUTFRAME(R0,"+tds.getIdfByName(nomIdf).getRang() * 4+")\r\n";
+		} else if (tds.getIdfByName(nomIdf).getCat().equals("param")) {
+			int nbParam=tds.getFuncByName(tds.getIdfByName(nomIdf).getScope()).getNbparam();
+			res+="\tPOP(R0)\r\n"+
+					"\tPUTFRAME(R0,"+ (2+nbParam-tds.getIdfByName(nomIdf).getRang())*-4 +")\r\n";
+		}
+        
         return res;
 	}
 	
@@ -130,7 +141,7 @@ public class Generateur {
 		String res="";
 		res+=generer_condition(a.getFils().get(0),tds);
 		res+="\tPOP(R0)\r\n"+
-				"\tBF(R0,sinon)\r\n";
+				"\tBF(R0,sinon"+a.getLabel().substring(a.getLabel().indexOf("/")+1)+")\r\n";
 		res+=generer_bloc(a.getFils().get(1),tds);
 		res+="\tBR(fsi"+a.getLabel().substring(a.getLabel().indexOf("/")+1)+")\n"+
 				"sinon"+a.getLabel().substring(a.getLabel().indexOf("/")+1)+":\r\n";
@@ -261,7 +272,8 @@ public class Generateur {
 		
 		res+=generer_expression(a.getFils().get(0), tds);
 		int offset=(3+nbParam)*-4;
-		res+="\tPUTFRAME(R0,"+offset+")\r\n"+
+		res+="\tPOP(R0)\r\n"+
+				"\tPUTFRAME(R0,"+offset+")\r\n"+
 				"\tBR(return_"+nomFunc+")\r\n";
 		return res;
 	}
