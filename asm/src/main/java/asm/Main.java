@@ -38,6 +38,7 @@ public class Main {
 		Tds tds = new Tds(listSym);
 		Generateur gen = new Generateur();
 		while (again) {
+			listSym.clear();
 			System.out.println("Veuillez rentrer le numéro d'exemple dont vous voulez obtenir l'arbre, la TDS ainsi que le code ASM :  ");
 			choix = sc.nextInt();
 		switch (choix) {
