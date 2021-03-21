@@ -1,5 +1,8 @@
 package asm;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -48,6 +51,8 @@ public class Main {
 				
 				System.out.println(gen.generer_programme(prog1, tds));
 				
+				generer_fichierASM("1", prog1, tds);
+				
 				break;
 			case 2:
 				System.out.println("Exemple 2\n==============================");
@@ -70,6 +75,8 @@ public class Main {
 				tds.displayTDS();
 				
 				System.out.println(gen.generer_programme(prog2, tds));
+				
+				generer_fichierASM("2", prog2, tds);
 				break;
 			case 3: 
 				System.out.println("Exemple 3\n==============================");
@@ -119,6 +126,7 @@ public class Main {
 				tds.displayTDS();
 				
 				System.out.println(gen.generer_programme(prog3, tds));
+				generer_fichierASM("3", prog3, tds);
 				break;
 			case 4:
 				System.out.println("Exemple 4\n==============================");
@@ -155,6 +163,7 @@ public class Main {
 				System.out.println("");
 				
 				System.out.println(gen.generer_programme(prog4, tds));
+				generer_fichierASM("4", prog4, tds);
 				
 				break;
 			case 5: 
@@ -204,6 +213,7 @@ public class Main {
 				tds.displayTDS();
 				
 				System.out.println(gen.generer_programme(prog5, tds));
+				generer_fichierASM("5", prog5, tds);
 				
 				break;
 			case 6:
@@ -259,6 +269,7 @@ public class Main {
 				tds.displayTDS();
 				
 				System.out.println(gen.generer_programme(prog6, tds));
+				generer_fichierASM("6", prog6, tds);
 				
 				break;
 			case 7: 
@@ -328,6 +339,7 @@ public class Main {
 				tds.displayTDS();
 				
 				System.out.println(gen.generer_programme(prog7, tds));
+				generer_fichierASM("7", prog7, tds);
 				break;
 			case 8:
 				System.out.println("Exemple 8\n==============================");
@@ -396,7 +408,19 @@ public class Main {
 				tds.displayTDS();
 				
 				System.out.println(gen.generer_programme(prog8, tds));
+				generer_fichierASM("8", prog8, tds);
 				break;
 		}
+	}
+	
+	public static void generer_fichierASM(String numEx, Noeud prog, Tds tds) {
+		Generateur gen = new Generateur();
+        try {
+            PrintWriter pw = new PrintWriter("exemple"+numEx+".asm", StandardCharsets.UTF_8);
+            pw.println(gen.generer_programme(prog, tds));
+            pw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 }
