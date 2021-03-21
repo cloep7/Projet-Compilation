@@ -11,15 +11,17 @@ import tds.Tds;
 
 public class Generateur {
 
-	/*String generer_programme(Noeud a, Tds tds) {
+	String generer_programme(Noeud a, Tds tds) {
 		String res = "";
 		res= generer_debut();
 		res+=generer_data(tds);
 		
 		for(Noeud n : a.getFils()) {
-			//res+= generer_fonction(n);
+			res+= generer_fonction(n,tds);
 		}
-	}*/
+		res+=generer_finProg();
+		return res;
+	}
 	
 	String generer_data(Tds tds) {
 		String res = "";
@@ -128,9 +130,9 @@ public class Generateur {
 		String res="";
 		res+=generer_condition(a.getFils().get(0),tds);
 		res+="\tPOP(R0)\r\n"+
-				"\tBF(R0,sinon)";
+				"\tBF(R0,sinon)\r\n";
 		res+=generer_bloc(a.getFils().get(1),tds);
-		res+="\tBR(fsi)\\n"+
+		res+="\tBR(fsi"+a.getLabel().substring(a.getLabel().indexOf("/")+1)+")\n"+
 				"sinon"+a.getLabel().substring(a.getLabel().indexOf("/")+1)+":\r\n";
 		res+=generer_bloc(a.getFils().get(2),tds);
 		res+="fsi"+a.getLabel().substring(a.getLabel().indexOf("/")+1)+":\r\n";
@@ -146,8 +148,19 @@ public class Generateur {
 						"\tPUSH(R0)\r\n";
 				break;
 			case IDF:
-				res+="\tLD("+ a.getLabel().substring(a.getLabel().indexOf("/")+1) +",R0)\r\n"+
-						"\tPUSH(R0)\r\n";
+				String nomIdf = a.getLabel().substring(a.getLabel().indexOf("/")+1);
+				if (tds.getIdfByName(nomIdf).getCat().equals("global")) {
+					res+="\tLD("+ nomIdf +",R0)\r\n"+
+							"\tPUSH(R0)\r\n";
+				} else if (tds.getIdfByName(nomIdf).getCat().equals("local")) {
+					res+="\tGETFRAME("+tds.getIdfByName(nomIdf).getRang() * 4+",R0)\r\n"+
+							"\tPUSH(R0)\r\n";;
+				} else if (tds.getIdfByName(nomIdf).getCat().equals("param")) {
+					int nbParam=tds.getFuncByName(tds.getIdfByName(nomIdf).getScope()).getNbparam();
+					res+="\tGETFRAME("+ (2 + nbParam - tds.getIdfByName(nomIdf).getRang()) * -4 +",R0)\r\n"+
+							"\tPUSH(R0)\r\n";;
+				}
+				
 				break;
 			case PLUS:
 				res+=generer_expression(a.getFils().get(0),tds);
@@ -183,7 +196,7 @@ public class Generateur {
 				break;
 			case LIRE:
 				res+="\tRDINT()\r\n"+
-						"\tPUSH(R0)";
+						"\tPUSH(R0)\r\n";
 				break;
 			case APPEL:
 				res+=generer_appel(a,tds);
@@ -241,6 +254,18 @@ public class Generateur {
 		return res;
 	}
 	
+	String generer_retour(Noeud a, Tds tds) {
+		String res="";
+		String nomFunc=a.getLabel().substring(a.getLabel().indexOf("/")+1);
+		int nbParam=tds.getFuncByName(nomFunc).getNbparam();
+		
+		res+=generer_expression(a.getFils().get(0), tds);
+		int offset=(3+nbParam)*-4;
+		res+="\tPUTFRAME(R0,"+offset+")\r\n"+
+				"\tBR(return_"+nomFunc+")\r\n";
+		return res;
+	}
+	
 	String generer_instruction(Noeud a, Tds tds) {
 		String res="";
 		switch (a.getCat()) {
@@ -260,7 +285,7 @@ public class Generateur {
 				res+=generer_appel(a,tds);
 				break;
 			case RET:
-				res+=generer_si(a,tds);
+				res+=generer_retour(a, tds);
 				break;
 			default:
 				
